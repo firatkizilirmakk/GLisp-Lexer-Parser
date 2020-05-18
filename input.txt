@@ -1,0 +1,6 @@
+(deffun factorial (x)
+	(if (eq x 0)
+		1
+		(* x (factorial (- x 1)))
+	)
+)

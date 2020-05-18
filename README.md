@@ -170,4 +170,23 @@ The **GLisp** parser takes these lexemes and produces the parse trees as below.
 		             )
 		     )"
 
+***
+#### Installation
 
+In order to use the GLisp ***parser***, for now, **clisp repl tool** must be installed.
+
+*	For GNU/Linux, "sudo apt-get install clisp".
+*	For Windows, https://sourceforge.net/projects/clisp/
+
+After installing the **clisp**, open its terminal based repl ;
+
+1. 	Load the lexer using **(load "lexer.lisp")**
+2.	Call GLisp lexer using **(lexer "input.txt")**, where the GLisp script is written. The GLisp lexer will produce the list of lexemes.
+3.	After retrieving the lexemes, load the parser using **(load "parser.lisp")**
+4.	Then call the parser with the lexemes produced by the lexer using **(parser '(lexemes))**
+5. 	The GLisp parser will then produce the corresponding parse tree.
+
+***
+#### TODO
+1. GLisp project needs an evaluator to produce the results of the written GLisp scripts.
+2. The project needs to be compact, used as a one tool.
