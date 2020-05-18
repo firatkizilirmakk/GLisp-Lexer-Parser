@@ -50,7 +50,7 @@ With the **GLisp** language, **basic programming language requirements** are met
 
 * For function definition ;
 
-	- ** EXPI -> (deffun Id IDLIST EXPLISTI)**
+	-  **EXPI -> (deffun Id IDLIST EXPLISTI)**
 	
 		A function named Id taking IDLIST parameters and EXPLISTI function body.
 	
@@ -72,8 +72,8 @@ With the **GLisp** language, **basic programming language requirements** are met
 
 * For loop statements ;
 
-	- **EXPI -> (while (EXPB) EXPLISTI)
-		**
+	- **EXPI -> (while (EXPB) EXPLISTI)**
+
 		A basic while loop. Looping until the EXPB is false, executing the EXPLISTI.
 	
 	- **EXPI -> (for (Id EXPI EXPI) EXPLISTI)**
