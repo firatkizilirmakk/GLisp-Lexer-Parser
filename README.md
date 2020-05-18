@@ -40,7 +40,7 @@ Below the syntax of the GLisp languge is given using all of the definitions abov
 	LISTVALUE -> ‘(VALUES) | ‘() | Null
 	VALUES -> VALUES IntegerValue | IntegerValue 
 ***
-With the **GLisp **language, **basic programming language requirements** are met like ;
+With the **GLisp** language, **basic programming language requirements** are met like ;
 
 * For an assignment ;
 
@@ -86,22 +86,88 @@ With the **GLisp **language, **basic programming language requirements** are met
 
 Below given an example function definiton and then its lexemes and the parse tree results.
 
-	(deffun sumup (x)
-    		(if (equal x 0)
-    			0
-    			(+ x (sumup (- x 1)))
-    		)
+	(deffun factorial (x)
+		(if (eq x 0)
+			1
+			(* x (factorial (- x 1)))
+		)
 	)
 
-Here a function named sumup, taking one parameter named x is defined. The function calculates the sum of the numbers up to the positive number x in a recursive form.
+The function calculates the factorial of the given number recursively and returns it.
 
 The **GLisp** lexer produces the below lexemes for this function definiton.
 
-	(("operator" "(") ("keyword" "deffun") ("identifier" "sumup") ("operator" "(") ("identifier" "x")
-	 ("operator" ")") ("operator" "(") ("keyword" "if") ("operator" "(") ("keyword" "equal")
+	(("operator" "(") ("keyword" "deffun") ("identifier" "factorial") ("operator" "(") ("identifier" "x")
+	 ("operator" ")") ("operator" "(") ("keyword" "if") ("operator" "(") ("identifier" "eq")
 	 ("identifier" "x") ("integer" "0") ("operator" ")") ("integer" "1") ("operator" "(")
-	 ("operator" "+") ("identifier" "x") ("operator" "(") ("identifier" "sumup") ("operator" "(")
+	 ("operator" "*") ("identifier" "x") ("operator" "(") ("identifier" "factorial") ("operator" "(")
 	 ("operator" "-") ("identifier" "x") ("integer" "1") ("operator" ")") ("operator" ")")
 	 ("operator" ")") ("operator" ")") ("operator" ")"))
+
+
 	
-The **GLisp** parser takes these lexemes and produces the parse trees.
+The **GLisp** parser takes these lexemes and produces the parse trees as below.
+
+	"START
+	     INPUT
+		 EXPI
+		     (
+		     deffun
+		     ID
+		         factorial
+		     IDLIST
+		         (
+		         IDLIST
+		             ID
+		                 x
+		         )
+		     EXPLISTI
+		         EXPI
+		             (
+		             if
+		             EXPB
+		                 (
+		                 ID
+		                     equal
+		                 EXPI
+		                     ID
+		                         x
+		                 EXPI
+		                     VALUES
+		                         IntegerValue
+		                             0
+		                 )
+		             EXPLISTI
+		                 EXPI
+		                     VALUES
+		                         IntegerValue
+		                             1
+		             EXPLISTI
+		                 EXPI
+		                     (
+		                     *
+		                     EXPI
+		                         ID
+		                             x
+		                     EXPI
+		                         (
+		                         ID
+		                             factorial
+		                         EXPLISTI
+		                             EXPI
+		                                 (
+		                                 -
+		                                 EXPI
+		                                     ID
+		                                         x
+		                                 EXPI
+		                                     VALUES
+		                                         IntegerValue
+		                                             1
+		                                 )
+		                         )
+		                     )
+		             )
+		     )"
+
+
